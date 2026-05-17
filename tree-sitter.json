@@ -1,0 +1,26 @@
+{
+  "grammars": [
+    {
+      "name": "manifest",
+      "camelcase": "Manifest",
+      "title": "Java manifest",
+      "scope": "source.manifest",
+      "file-types": [
+        "MF"
+      ],
+      "highlights": "queries/highlights.scm",
+      "tags": "queries/tags.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "Apache-2.0",
+    "description": "tree-sitter grammar for Java MANIFEST.MF files",
+    "author": [
+      {
+        "name": "ntk",
+        "email": "219413815+impure0xntk@users.noreply.github.com"
+      }
+    ]
+  }
+}

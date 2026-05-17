@@ -1,0 +1,394 @@
+==================================
+Simple manifest
+==================================
+
+Manifest-Version: 1.0
+Created-By: Oracle
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Main attributes only (no individual sections)
+==================================
+
+Manifest-Version: 1.0
+Created-By: Oracle
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Custom key with digits and hyphen
+==================================
+
+Manifest-Version: 1.0
+X-COMM-1: value1
+Custom-Header-99: value2
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Version number variants (valid version formats)
+==================================
+
+Manifest-Version: 1.0
+Created-By: 1.8.0_292
+Build-Jdk: 15.0.1
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Mixed case key
+==================================
+
+Manifest-Version: 1.0
+content-type: application/java-archive
+X-Custom: value
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Empty value attribute (zero-length value — legal)
+==================================
+
+Manifest-Version: 1.0
+Blank-Value: 
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Multiline value (continuation)
+==================================
+
+Manifest-Version: 1.0
+Name: com/example/MyClass.class
+SHA-256-Digest: ZjZmODU2M2UyYzMyMzJmZjRiOGY1NDM3
+ MTA5NmQzZjkwMDAwMDAwMA==
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value)))
+  (individual_section
+    (section_name_header
+      name: (section_name))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (continuation_line
+      value: (continuation_value))))
+
+==================================
+Multiple sections
+==================================
+
+Manifest-Version: 1.0
+Created-By: Oracle
+
+Name: com/example/Main.class
+SHA-256-Digest: abc123
+
+Name: com/example/Util.class
+SHA-256-Digest: def456
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value)))
+  (individual_section
+    (section_name_header
+      name: (section_name))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value)))
+  (individual_section
+    (section_name_header
+      name: (section_name))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Multiple continuation lines (wrapped value)
+==================================
+
+Manifest-Version: 1.0
+Name: com/example/LongPath.class
+SHA-256-Digest: aaaaaa
+ bbbbbb
+ cccccc
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value)))
+  (individual_section
+    (section_name_header
+      name: (section_name))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (continuation_line
+      value: (continuation_value))
+    (continuation_line
+      value: (continuation_value))))
+
+==================================
+Empty last line (no trailing newline — parseable)
+==================================
+
+Manifest-Version: 1.0
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Section with multiple attributes
+==================================
+
+Manifest-Version: 1.0
+
+Name: com/example/Complex.class
+SHA-256-Digest: aiffjsndkjns
+Sealed: true
+Multi-Release: true
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value)))
+  (individual_section
+    (section_name_header
+      name: (section_name))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+CRLF line endings
+==================================
+
+Manifest-Version: 1.0\r
+Created-By: Oracle\r
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Value containing colon
+==================================
+
+Manifest-Version: 1.0
+Class-Path: lib/a.jar lib/b.jar
+X-URL: https://example.com:8080/path
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Signature-Version header
+==================================
+
+Signature-Version: 1.0
+SHA-256-Digest-Manifest: abc123
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Misplaced continuation line (ERROR)
+==================================
+
+ Manifest-Version: 1.0
+
+---
+
+(manifest
+  (main_section
+    (continuation_line
+      value: (continuation_value))))
+
+==================================
+Header without colon (ERROR)
+==================================
+
+Manifest-Version 1.0
+
+---
+
+(manifest
+  (ERROR
+    (attribute_key))
+  (main_section
+    (continuation_line
+      (continuation_value))))
+
+==================================
+Name header case-insensitive
+==================================
+
+Manifest-Version: 1.0
+NAME: com/example/UpperCase.class
+name: com/example/lowercase.class
+NaMe: com/example/MixedCase.class
+SHA-256-Digest: abc123
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value)))
+  (individual_section
+    (section_name_header
+      name: (section_name)))
+  (individual_section
+    (section_name_header
+      name: (section_name)))
+  (individual_section
+    (section_name_header
+      name: (section_name))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
+
+==================================
+Name header with continuation (section name folds)
+==================================
+
+Manifest-Version: 1.0
+Name: com/example/
+ folded/path.class
+SHA-256-Digest: abc123
+
+---
+
+(manifest
+  (main_section
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value)))
+  (individual_section
+    (section_name_header
+      name: (section_name)
+      (section_name_continuation
+        value: (continuation_value)))
+    (attribute_entry
+      key: (attribute_key)
+      value: (attribute_value))))
