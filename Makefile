@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-java-manifest
 HOMEPAGE_URL := https://github.com/impure0xntk/tree-sitter-java-manifest
-VERSION := 0.1.2
+VERSION := 0.1.3
 
 # repository
 SRC_DIR := src
