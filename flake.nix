@@ -10,8 +10,21 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        info = builtins.fromJSON (builtins.readFile ./tree-sitter.json);
+
+        # parser and queries
+        tree-sitter-java-manifest = pkgs.tree-sitter.buildGrammar {
+          language = "java_manifest_mf";
+          version = info.metadata.version;
+          src = ./. ;
+        };
       in
       {
+        packages = {
+          default = tree-sitter-java-manifest;
+          parser  = tree-sitter-java-manifest;
+        };
+
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             tree-sitter
