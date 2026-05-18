@@ -1,6 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "java_manifest_mf",
+  "name": "java_manifest",
   "word": "attribute_key",
   "rules": {
     "manifest": {

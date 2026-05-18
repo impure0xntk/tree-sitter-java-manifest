@@ -637,7 +637,7 @@ extern "C" {
 #define TS_PUBLIC __attribute__((visibility("default")))
 #endif
 
-TS_PUBLIC const TSLanguage *tree_sitter_java_manifest_mf(void) {
+TS_PUBLIC const TSLanguage *tree_sitter_java_manifest(void) {
   static const TSLanguage language = {
     .abi_version = LANGUAGE_VERSION,
     .symbol_count = SYMBOL_COUNT,
@@ -667,7 +667,7 @@ TS_PUBLIC const TSLanguage *tree_sitter_java_manifest_mf(void) {
     .keyword_lex_fn = ts_lex_keywords,
     .keyword_capture_token = sym_attribute_key,
     .primary_state_ids = ts_primary_state_ids,
-    .name = "java_manifest_mf",
+    .name = "java_manifest",
     .max_reserved_word_set_size = 0,
     .metadata = {
       .major_version = 0,

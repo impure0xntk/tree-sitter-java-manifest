@@ -125,7 +125,7 @@
 // ==========================================================================
 
 module.exports = grammar({
-  name: 'java_manifest_mf',
+  name: 'java_manifest',
 
   // -----------------------------------------------------------------------
   //  Inline whitespace (SPACE, TAB, FF) is extra – freely skipped between
