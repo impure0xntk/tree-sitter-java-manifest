@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-manifest
-        VERSION "0.1.0"
+        VERSION "0.1.2"
         DESCRIPTION "tree-sitter grammar for Java MANIFEST.MF files"
         HOMEPAGE_URL "https://github.com/impure0xntk/tree-sitter-java-manifest"
         LANGUAGES C)

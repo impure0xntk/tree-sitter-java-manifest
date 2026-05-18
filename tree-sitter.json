@@ -1,7 +1,7 @@
 {
   "grammars": [
     {
-      "name": "manifest",
+      "name": "java_manifest",
       "camelcase": "Manifest",
       "title": "Java manifest",
       "scope": "source.manifest",
@@ -13,7 +13,7 @@
     }
   ],
   "metadata": {
-    "version": "0.1.1",
+    "version": "0.1.2",
     "license": "Apache-2.0",
     "description": "tree-sitter grammar for Java MANIFEST.MF files",
     "author": [
