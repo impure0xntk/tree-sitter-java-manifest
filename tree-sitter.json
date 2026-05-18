@@ -21,6 +21,17 @@
         "name": "ntk",
         "email": "219413815+impure0xntk@users.noreply.github.com"
       }
-    ]
+    ],
+    "links": {
+      "repository": "https://github.com/impure0xntk/tree-sitter-java-manifest"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
   }
 }
