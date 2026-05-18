@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-java-manifest",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "tree-sitter grammar for Java MANIFEST.MF files",
   "repository": "https://github.com/impure0xntk/tree-sitter-java-manifest",
   "license": "Apache-2.0",
