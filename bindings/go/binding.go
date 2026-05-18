@@ -1,4 +1,4 @@
-package tree_sitter_manifest
+package tree_sitter_java_manifest
 
 // #cgo CFLAGS: -std=c11 -fPIC
 // #include "../../src/parser.c"
@@ -11,5 +11,5 @@ import "unsafe"
 
 // Get the tree-sitter Language for this grammar.
 func Language() unsafe.Pointer {
-	return unsafe.Pointer(C.tree_sitter_manifest())
+	return unsafe.Pointer(C.tree_sitter_java_manifest())
 }

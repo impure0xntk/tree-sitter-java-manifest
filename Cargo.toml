@@ -1,10 +1,10 @@
 [package]
-name = "tree-sitter-manifest"
+name = "tree-sitter-java-manifest"
 description = "tree-sitter grammar for Java MANIFEST.MF files"
 version = "0.1.2"
 license = "Apache-2.0"
 readme = "README.md"
-keywords = ["incremental", "parsing", "tree-sitter", "manifest"]
+keywords = ["incremental", "parsing", "tree-sitter", "java-manifest"]
 categories = ["parser-implementations", "parsing", "text-editors"]
 repository = "https://github.com/impure0xntk/tree-sitter-java-manifest"
 edition = "2021"

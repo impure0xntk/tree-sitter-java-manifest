@@ -11,7 +11,7 @@ from wheel.bdist_wheel import bdist_wheel
 class Build(build):
     def run(self):
         if path.isdir("queries"):
-            dest = path.join(self.build_lib, "tree_sitter_manifest", "queries")
+            dest = path.join(self.build_lib, "tree_sitter_java_manifest", "queries")
             self.copy_tree("queries", dest)
         super().run()
 
@@ -48,15 +48,15 @@ setup(
     packages=find_packages("bindings/python"),
     package_dir={"": "bindings/python"},
     package_data={
-        "tree_sitter_manifest": ["*.pyi", "py.typed"],
-        "tree_sitter_manifest.queries": ["*.scm"],
+        "tree_sitter_java_manifest": ["*.pyi", "py.typed"],
+        "tree_sitter_java_manifest.queries": ["*.scm"],
     },
-    ext_package="tree_sitter_manifest",
+    ext_package="tree_sitter_java_manifest",
     ext_modules=[
         Extension(
             name="_binding",
             sources=[
-                "bindings/python/tree_sitter_manifest/binding.c",
+                "bindings/python/tree_sitter_java_manifest/binding.c",
                 "src/parser.c",
             ],
             define_macros=[

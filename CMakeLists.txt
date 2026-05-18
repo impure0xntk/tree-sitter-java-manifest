@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(tree-sitter-manifest
+project(tree-sitter-java-manifest
         VERSION "0.1.2"
         DESCRIPTION "tree-sitter grammar for Java MANIFEST.MF files"
         HOMEPAGE_URL "https://github.com/impure0xntk/tree-sitter-java-manifest"
@@ -26,40 +26,40 @@ add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
                    COMMENT "Generating parser.c")
 
-add_library(tree-sitter-manifest src/parser.c)
+add_library(tree-sitter-java-manifest src/parser.c)
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c)
-  target_sources(tree-sitter-manifest PRIVATE src/scanner.c)
+  target_sources(tree-sitter-java-manifest PRIVATE src/scanner.c)
 endif()
-target_include_directories(tree-sitter-manifest
+target_include_directories(tree-sitter-java-manifest
                            PRIVATE src
                            INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/bindings/c>
                                      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-target_compile_definitions(tree-sitter-manifest PRIVATE
+target_compile_definitions(tree-sitter-java-manifest PRIVATE
                            $<$<BOOL:${TREE_SITTER_REUSE_ALLOCATOR}>:TREE_SITTER_REUSE_ALLOCATOR>
                            $<$<CONFIG:Debug>:TREE_SITTER_DEBUG>)
 
-set_target_properties(tree-sitter-manifest
+set_target_properties(tree-sitter-java-manifest
                       PROPERTIES
                       C_STANDARD 11
                       POSITION_INDEPENDENT_CODE ON
                       SOVERSION "${TREE_SITTER_ABI_VERSION}.${PROJECT_VERSION_MAJOR}"
                       DEFINE_SYMBOL "")
 
-configure_file(bindings/c/tree-sitter-manifest.pc.in
-               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-manifest.pc" @ONLY)
+configure_file(bindings/c/tree-sitter-java-manifest.pc.in
+               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-java-manifest.pc" @ONLY)
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bindings/c/tree_sitter"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
         FILES_MATCHING PATTERN "*.h")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-manifest.pc"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-java-manifest.pc"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
-install(TARGETS tree-sitter-manifest
+install(TARGETS tree-sitter-java-manifest
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 
 file(GLOB QUERIES queries/*.scm)
 install(FILES ${QUERIES}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/tree-sitter/queries/manifest")
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/tree-sitter/queries/java-manifest")
 
 add_custom_target(ts-test "${TREE_SITTER_CLI}" test
                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"

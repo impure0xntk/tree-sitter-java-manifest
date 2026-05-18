@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter-manifest",
+  "name": "tree-sitter-java-manifest",
   "version": "0.1.2",
   "description": "tree-sitter grammar for Java MANIFEST.MF files",
   "repository": "https://github.com/impure0xntk/tree-sitter-java-manifest",
@@ -10,7 +10,7 @@
     "incremental",
     "parsing",
     "tree-sitter",
-    "manifest"
+    "java_manifest"
   ],
   "files": [
     "grammar.js",

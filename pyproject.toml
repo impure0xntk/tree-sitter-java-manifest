@@ -3,10 +3,10 @@ requires = ["setuptools>=62.4.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tree-sitter-manifest"
+name = "tree-sitter-java-manifest"
 description = "tree-sitter grammar for Java MANIFEST.MF files"
 version = "0.1.2"
-keywords = ["incremental", "parsing", "tree-sitter", "manifest"]
+keywords = ["incremental", "parsing", "tree-sitter", "java-manifest"]
 classifiers = [
   "Intended Audience :: Developers",
   "Topic :: Software Development :: Compilers",
