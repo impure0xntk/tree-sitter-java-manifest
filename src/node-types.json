@@ -26,11 +26,6 @@
     }
   },
   {
-    "type": "attribute_value",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "continuation_line",
     "named": true,
     "fields": {
@@ -54,21 +49,7 @@
   {
     "type": "header_value",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "attribute_value",
-          "named": true
-        },
-        {
-          "type": "continuation_line",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "individual_section",
@@ -131,18 +112,7 @@
   {
     "type": "section_name_continuation",
     "named": true,
-    "fields": {
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "continuation_value",
-            "named": true
-          }
-        ]
-      }
-    }
+    "fields": {}
   },
   {
     "type": "section_name_header",

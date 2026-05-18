@@ -11,12 +11,10 @@ Created-By: Oracle
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Main attributes only (no individual sections)
@@ -31,12 +29,10 @@ Created-By: Oracle
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Custom key with digits and hyphen
@@ -52,16 +48,13 @@ Custom-Header-99: value2
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Version number variants (valid version formats)
@@ -77,16 +70,13 @@ Build-Jdk: 15.0.1
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Mixed case key
@@ -102,16 +92,13 @@ X-Custom: value
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Empty value attribute (zero-length value — legal)
@@ -126,12 +113,10 @@ Blank-Value:
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Multiline value (continuation)
@@ -148,17 +133,13 @@ SHA-256-Digest: ZjZmODU2M2UyYzMyMzJmZjRiOGY1NDM3
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value))))
+      value: (header_value)))
   (individual_section
     (section_name_header
       name: (section_name))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)
-        (continuation_line
-          value: (continuation_value))))))
+      value: (header_value))))
 
 ==================================
 Multiple sections
@@ -179,26 +160,22 @@ SHA-256-Digest: def456
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value))))
+      value: (header_value)))
   (individual_section
     (section_name_header
       name: (section_name))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value))))
+      value: (header_value)))
   (individual_section
     (section_name_header
       name: (section_name))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Multiple continuation lines (wrapped value)
@@ -216,19 +193,13 @@ SHA-256-Digest: aaaaaa
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value))))
+      value: (header_value)))
   (individual_section
     (section_name_header
       name: (section_name))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)
-        (continuation_line
-          value: (continuation_value))
-        (continuation_line
-          value: (continuation_value))))))
+      value: (header_value))))
 
 ==================================
 Empty last line (no trailing newline — parseable)
@@ -242,8 +213,7 @@ Manifest-Version: 1.0
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Section with multiple attributes
@@ -262,23 +232,19 @@ Multi-Release: true
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value))))
+      value: (header_value)))
   (individual_section
     (section_name_header
       name: (section_name))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 CRLF line endings
@@ -293,12 +259,10 @@ Created-By: Oracle\r
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Value containing colon
@@ -314,16 +278,13 @@ X-URL: https://example.com:8080/path
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Signature-Version header
@@ -338,12 +299,10 @@ SHA-256-Digest-Manifest: abc123
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))
+      value: (header_value))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Misplaced continuation line (ERROR)
@@ -389,8 +348,7 @@ SHA-256-Digest: abc123
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value))))
+      value: (header_value)))
   (individual_section
     (section_name_header
       name: (section_name)))
@@ -402,8 +360,7 @@ SHA-256-Digest: abc123
       name: (section_name))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))
 
 ==================================
 Name header with continuation (section name folds)
@@ -420,14 +377,11 @@ SHA-256-Digest: abc123
   (main_section
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value))))
+      value: (header_value)))
   (individual_section
     (section_name_header
       name: (section_name)
-      (section_name_continuation
-        value: (continuation_value)))
+      (section_name_continuation))
     (attribute_entry
       key: (attribute_key)
-      value: (header_value
-        (attribute_value)))))
+      value: (header_value))))

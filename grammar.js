@@ -259,7 +259,7 @@ module.exports = grammar({
     // ----------------------------------------------------------------------
     section_name_continuation: $ => seq(
       ' ',                                                // leading space
-      field('value', $.continuation_value),               // folded name fragment
+      token.immediate(/[^\x00\n\r]*/),                  // folded name fragment
     ),
 
     // ----------------------------------------------------------------------
@@ -282,8 +282,11 @@ module.exports = grammar({
     //  into the preceding header).
     // ----------------------------------------------------------------------
     header_value: $ => prec.right(seq(
-      $.attribute_value,
-      repeat($.continuation_line),
+      token.immediate(/[^\x00\n\r]*/),
+      repeat(seq(
+        ' ',
+        token.immediate(/[^\x00\n\r]*/),
+      )),
     )),
 
     // ----------------------------------------------------------------------
@@ -303,19 +306,6 @@ module.exports = grammar({
       ': ',                                                // colon + space
       field('value', $.header_value),
     ),
-
-    // ----------------------------------------------------------------------
-    //  attribute_value – the value portion of a header
-    //
-    //    [SPEC] value: SPACE *otherchar newline *continuation
-    //           otherchar: any UTF-8 character except NUL, CR and LF
-    //
-    //  token.immediate prevents whitespace (SPACE, TAB) from being
-    //  consumed inside the token – whitespace belongs to extras.
-    //  The regex matches zero or more characters that are not NUL, CR, LF.
-    //  Zero-length is valid (e.g. "Blank-Value: ").
-    // ----------------------------------------------------------------------
-    attribute_value: $ => token.immediate(/[^\x00\n\r]*/),
 
     // ----------------------------------------------------------------------
     //  continuation_line – a wrapped continuation of the previous value
