@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-java-manifest"
 description = "tree-sitter grammar for Java MANIFEST.MF files"
-version = "0.1.3"
+version = "0.1.4"
 keywords = ["incremental", "parsing", "tree-sitter", "java-manifest"]
 classifiers = [
   "Intended Audience :: Developers",

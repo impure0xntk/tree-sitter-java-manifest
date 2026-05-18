@@ -8,10 +8,10 @@
 (attribute_entry
   key: (attribute_key) @keyword.import)
 
-; ── Header value (incl. continuation) ──────────
-(attribute_entry
-  value: (attribute_value) @string)
+; ── Header value (first-line value) ─────────────
+(attribute_value) @string
 
+; ── Continuation line value ─────────────────────
 (continuation_line
   value: (continuation_value) @string)
 

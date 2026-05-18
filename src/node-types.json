@@ -18,7 +18,7 @@
         "required": true,
         "types": [
           {
-            "type": "attribute_value",
+            "type": "header_value",
             "named": true
           }
         ]
@@ -52,6 +52,25 @@
     "fields": {}
   },
   {
+    "type": "header_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_value",
+          "named": true
+        },
+        {
+          "type": "continuation_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "individual_section",
     "named": true,
     "fields": {},
@@ -61,10 +80,6 @@
       "types": [
         {
           "type": "attribute_entry",
-          "named": true
-        },
-        {
-          "type": "continuation_line",
           "named": true
         },
         {

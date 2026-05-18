@@ -104,23 +104,22 @@
 //
 //    manifest
 //    ├── main_section
-//    │   ├── attribute_entry        (key: attribute_key, value: attribute_value)
+//    │   ├── attribute_entry        (key: attribute_key, value: header_value)
 //    │   ├── attribute_entry
 //    │   └── continuation_line      (only when misplaced – see test 15)
 //    ├── individual_section
 //    │   ├── section_name_header
 //    │   │   ├── section_name
 //    │   │   └── section_name_continuation*   (folded names only)
-//    │   ├── attribute_entry
-//    │   └── continuation_line*
+//    │   └── attribute_entry        (continuation lines nested inside header_value)
 //    └── individual_section
 //        └── ...
 //
-//    Note: main_section and individual_section BOTH accept
-//    continuation_line as a child.  In a valid manifest, continuation
-//    lines only appear after an attribute_entry.  A continuation_line
-//    in main_section before any attribute_entry is an error case
-//    (see test corpus "Misplaced continuation line").
+//    Note: header_value nests attribute_value and continuation_line
+//    together so that incremental selection in editors treats the
+//    entire value (including wrapped continuation lines) as a single
+//    selectable unit.  main_section still accepts a bare
+//    continuation_line for error recovery (misplaced continuation).
 //
 // ==========================================================================
 
@@ -183,13 +182,13 @@ module.exports = grammar({
     //    [JDK]   Parsed by attr.read() before the entry loop.
     //
     //  Must contain at least one node (Manifest-Version is mandatory).
-    //  Accepts attribute_entry for key:value pairs and continuation_line
-    //  for wrapped values.  A continuation_line appearing before any
-    //  attribute_entry is a malformed manifest (see test corpus).
+    //  continuation_line at this level only matches misplaced continuations
+    //  (a line starting with SPACE before any attribute_entry).  Valid
+    //  continuations are nested inside header_value (see attribute_entry).
     // ----------------------------------------------------------------------
     main_section: $ => repeat1(choice(
-      $.attribute_entry,       // key: value
-      $.continuation_line,     // continuation of previous value
+      $.attribute_entry,       // key: value (continuations nested inside)
+      $.continuation_line,     // misplaced continuation (error recovery)
     )),
 
     // ----------------------------------------------------------------------
@@ -200,15 +199,12 @@ module.exports = grammar({
     //            when parseName() succeeds.
     //
     //  Structure: a section_name_header followed by zero or more
-    //  attribute_entry / continuation_line nodes.
+    //  attribute_entry nodes (continuations are nested inside header_value).
     //  An empty section (Name header only, no attributes) is legal.
     // ----------------------------------------------------------------------
     individual_section: $ => seq(
       $.section_name_header,   // "Name: <path>" delimiter
-      repeat(choice(
-        $.attribute_entry,
-        $.continuation_line,
-      )),
+      repeat($.attribute_entry),
     ),
 
     // ----------------------------------------------------------------------
@@ -267,21 +263,45 @@ module.exports = grammar({
     ),
 
     // ----------------------------------------------------------------------
+    //  header_value – wrapper for value + continuations
+    //
+    //    Groups attribute_value and following continuation_line nodes
+    //    into a single named node.  This allows editor incremental
+    //    selection (e.g. vim's @string capture) to select the complete
+    //    value across multiple lines.
+    //
+    //  Contains exactly one attribute_value followed by zero or more
+    //  continuation_line nodes.
+    //
+    //  prec.right: when attribute_value is empty, the parser must
+    //  decide whether a leading SPACE belongs to a continuation_line
+    //  inside this header_value, or terminates the header_value so the
+    //  continuation_line belongs to the enclosing section.  prec.right
+    //  biases towards nesting continuations inside the header_value,
+    //  matching [JDK] behaviour (continuations are greedily consumed
+    //  into the preceding header).
+    // ----------------------------------------------------------------------
+    header_value: $ => prec.right(seq(
+      $.attribute_value,
+      repeat($.continuation_line),
+    )),
+
+    // ----------------------------------------------------------------------
     //  attribute_entry – a single key: value pair
     //
     //    [SPEC] header: name : value
     //
     //  key:   attribute_key  – alphanum *headerchar (see below)
     //  ": "   literal         – colon + space separator
-    //  value: attribute_value – *otherchar (can be empty)
+    //  value: header_value    – wraps attribute_value + continuation_line*
     //
-    //  Continuation of the value is handled by separate continuation_line
-    //  nodes that follow this node.
+    //  Continuation lines are nested inside the header_value node so
+    //  the entire logical value (including wrapped lines) is one unit.
     // ----------------------------------------------------------------------
     attribute_entry: $ => seq(
       field('key', $.attribute_key),
       ': ',                                                // colon + space
-      field('value', $.attribute_value),
+      field('value', $.header_value),
     ),
 
     // ----------------------------------------------------------------------
